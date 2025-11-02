@@ -14,8 +14,11 @@ csv_files <- list.files(
 )
 
 #Combine all CSVs
-clean_data <- csv_files %>%
+clean_data <- csv_files |>
   map_dfr(read_csv)
+
+#Remove unnecessary data columns
+clean_data <- subset(clean_data, select = -c(...1,`Unnamed: 0.1`,`Unnamed: 0`))
 
 #Set to default data
 usethis::use_data(clean_data, overwrite = TRUE)
