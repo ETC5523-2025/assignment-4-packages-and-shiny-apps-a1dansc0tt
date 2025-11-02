@@ -1,9 +1,10 @@
 Package: nbashotpackage
-Title: What the Package Does (One Line, Title Case)
+Title: Locations of Shots in NBA Games from 2001 to 2022
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Aidan", "Scott", , "scottaidan0403@gmail.com", role = c("aut", "cre"))
+Description: This package aims to compare the locations of shots in the NBA over time. 
+Specifically, comparing the locations of shots on the court in the 2001-2002 season to those in the 2021-2022 season. 
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
