@@ -2,7 +2,17 @@ usethis::use_package("ggplot2")
 usethis::use_package("dplyr")
 usethis::use_package("patchwork")
 
-#Create the function for plotting either total shots or total points in each season, seperated by shot tpye and filtered by team
+#' Bar chart and tibble of shot type in the 2001-2002 and 2021-2022 seasons filtered by NBA team
+#'
+#' Creates two bar charts and tibbles that show either the total number of points from 2 and 3-point attempts
+#' or the total number of shots, filtered by team and split by season from NBA data
+#' @return `ggplot2` a summary tible and side by side bar charts
+#' @examples
+#' analyse_shots(data = clean_data, team_filter = "BOS", metric = "points")$plot
+#' analyse_shots(data = clean_data, team_filter = "ATL", metric = "shots")$summary
+#'
+#' @export
+#Create the function for plotting either total shots or total points in each season, separated by shot tpye and filtered by team
 analyse_shots <- function(data, team_filter = NULL, metric = c("shots", "points")) { #function input
   metric <- match.arg(metric)
 
