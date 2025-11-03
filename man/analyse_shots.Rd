@@ -7,10 +7,10 @@
 analyse_shots(data, team_filter = NULL, metric = c("shots", "points"))
 }
 \value{
-\code{ggplot2} a summary tible and side by side bar charts
+\code{ggplot2} a summary tibble and side by side bar charts
 }
 \description{
-Creates two bar charts and tibbles that show either the total number of points from 2 and 3-point attempts
+Creates two bar charts and a tibble that show either the total number of points from 2 and 3-point attempts
 or the total number of shots, filtered by team and split by season from NBA data
 }
 \examples{

@@ -36,3 +36,44 @@ The goal of this is to allow users to compare shot selection between the two sea
 
 ## The Data
 
+The data that is included in this package is already processed and cleaned. 
+```{r}
+head(clean_data)
+```
+
+To view a full description of variables and other information run the below code. However, key variables for this analysis include:
+
+- team: team abbreviation (e.g., BOS, MIL, ATL)
+- shot_type: "2-pointer" or "3-pointer"
+- match_id: unique game identifier
+- shot_result: "TRUE", "FALSE"
+
+```{r}
+?clean_data
+```
+
+## Analysis of Shot Type
+
+Here we use the main function of this package `analyse_shots()`
+
+This creates a summary tibble and a side-by-side bar chart comparing data across the two seasons with optional filters for team (NBA team selection) and metric (volume of points or shots)
+
+## Example
+An example of the plot comparison:
+```{r}
+results <- analyse_shots(clean_data, team_filter = "BOS", metric = "points")
+results$plot
+```
+
+## Interpretation
+This chart shows the total amount of points scored via 2pt and 3pt attempts for the Boston Celtics. Comparing between the 2001-2002 season and the 2021-2022 season we can see that the proportion of 3pt shots has increased significantly compared to that of 2pt shots. This is likely due to the reduction of mid range shots (either driving to the basket or steping back for the more valuable 3pt shots).
+
+## Shiny App
+The package includes a Shiny app that allows the users to interactively:
+
+- Select NBA team
+- Select metric (shots or points)
+- View and compare shots and charts
+- Further explanations and interpretations
+
+To launch this app, use `run_my_app()`
