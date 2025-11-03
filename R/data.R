@@ -19,4 +19,4 @@
 #' }
 #' @source <https://www.basketball-reference.com/>
 "clean_data"
-usethis::use_data(clean_data, overwrite = TRUE)
+#usethis::use_data(clean_data, overwrite = TRUE)

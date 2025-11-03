@@ -59,8 +59,108 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">nbashotpackage</span><span class="op">)</span></span></code></pre></div>
-  </main>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">nbashotpackage</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The <strong>nbashotspackage</strong> provides tools to explore a data
+set that contains NBA shooting data from the 2001-2002 and 2021-2022
+seasons (2 seasons).</p>
+<p>This vignette takes users through a basic demonstration that
+encapsulates the purpose of this package. It will explore:</p>
+<ol style="list-style-type: decimal">
+<li>Load the data set included <code>clean_data</code>.</li>
+<li>Utilise the <code><a href="../reference/analyse_shots.html">analyse_shots()</a></code> function.</li>
+<li>Output interpretation from this analysis</li>
+<li>Launch the interactive Shiny app that is included in the
+package.</li>
+</ol>
+<p>The goal of this is to allow users to compare shot selection between
+the two seasons, specifically when it comes to the frequency of
+2-pointer and 3-pointer shots.</p>
+</div>
+<div class="section level2">
+<h2 id="the-data">The Data<a class="anchor" aria-label="anchor" href="#the-data"></a>
+</h2>
+<p>The data that is included in this package is already processed and
+cleaned.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">clean_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 13</span></span></span>
+<span><span class="co">#&gt;   match_id     shotX shotY quarter   time_remaining player team  made  shot_type</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;hms&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 200010310ATL   8.3  20.2 1st quar… 41340 secs     Baron… CHH   FALSE 2-pointer</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 200010310ATL  35.9  15.8 1st quar… 38460 secs     Jamal… CHH   FALSE 2-pointer</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 200010310ATL  24     5   1st quar… 38280 secs     Baron… CHH   FALSE 2-pointer</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 200010310ATL  15.4   5.9 1st quar… 34560 secs     Elden… CHH   FALSE 2-pointer</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 200010310ATL  20.3  25   1st quar… 33480 secs     David… CHH   TRUE  2-pointer</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 200010310ATL  19     6.9 1st quar… 31200 secs     Elden… CHH   FALSE 2-pointer</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: distance &lt;dbl&gt;, score &lt;chr&gt;, opp &lt;chr&gt;, status &lt;chr&gt;</span></span></span></code></pre></div>
+<p>To view a full description of variables and other information run the
+below code. However, key variables for this analysis include:</p>
+<ul>
+<li>team: team abbreviation (e.g., BOS, MIL, ATL)</li>
+<li>shot_type: “2-pointer” or “3-pointer”</li>
+<li>match_id: unique game identifier</li>
+<li>shot_result: “TRUE”, “FALSE”</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">clean_data</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="analysis-of-shot-type">Analysis of Shot Type<a class="anchor" aria-label="anchor" href="#analysis-of-shot-type"></a>
+</h2>
+<p>Here we use the main function of this package
+<code><a href="../reference/analyse_shots.html">analyse_shots()</a></code></p>
+<p>This creates a summary tibble and a side-by-side bar chart comparing
+data across the two seasons with optional filters for team (NBA team
+selection) and metric (volume of points or shots)</p>
+</div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>An example of the plot comparison:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/analyse_shots.html">analyse_shots</a></span><span class="op">(</span><span class="va">clean_data</span>, team_filter <span class="op">=</span> <span class="st">"BOS"</span>, metric <span class="op">=</span> <span class="st">"points"</span><span class="op">)</span></span>
+<span><span class="va">results</span><span class="op">$</span><span class="va">plot</span></span></code></pre></div>
+<p><img src="nbashotpackage_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="interpretation">Interpretation<a class="anchor" aria-label="anchor" href="#interpretation"></a>
+</h2>
+<p>This chart shows the total amount of points scored via 2pt and 3pt
+attempts for the Boston Celtics. Comparing between the 2001-2002 season
+and the 2021-2022 season we can see that the proportion of 3pt shots has
+increased significantly compared to that of 2pt shots. This is likely
+due to the reduction of mid range shots (either driving to the basket or
+steping back for the more valuable 3pt shots).</p>
+</div>
+<div class="section level2">
+<h2 id="shiny-app">Shiny App<a class="anchor" aria-label="anchor" href="#shiny-app"></a>
+</h2>
+<p>The package includes a Shiny app that allows the users to
+interactively:</p>
+<ul>
+<li>Select NBA team</li>
+<li>Select metric (shots or points)</li>
+<li>View and compare shots and charts</li>
+<li>Further explanations and interpretations</li>
+</ul>
+<p>To launch this app, use <code><a href="../reference/run_my_app.html">run_my_app()</a></code></p>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

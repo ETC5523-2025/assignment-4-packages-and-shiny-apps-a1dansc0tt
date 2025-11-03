@@ -21,4 +21,4 @@ clean_data <- csv_files |>
 clean_data <- subset(clean_data, select = -c(...1,`Unnamed: 0.1`,`Unnamed: 0`))
 
 #Set to default data
-usethis::use_data(clean_data, overwrite = TRUE)
+#usethis::use_data(clean_data, overwrite = TRUE)

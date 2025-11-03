@@ -1,6 +1,7 @@
 usethis::use_package("ggplot2")
 usethis::use_package("dplyr")
 usethis::use_package("patchwork")
+usethis::use_package("shiny")
 
 #' Bar chart and tibble of shot type in the 2001-2002 and 2021-2022 seasons filtered by NBA team
 #'

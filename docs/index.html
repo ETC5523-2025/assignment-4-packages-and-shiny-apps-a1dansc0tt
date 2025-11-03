@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Locations of Shots in NBA Games from the 2001-2002 and 2021-2022 NBA seasons.">
-<meta name="description" content="This package aims to compare the locations of shots in the NBA over time. Specifically, comparing the locations of shots on the court in the 2001-2002 season to those in the 2021-2022 season.">
-<meta property="og:description" content="This package aims to compare the locations of shots in the NBA over time. Specifically, comparing the locations of shots on the court in the 2001-2002 season to those in the 2021-2022 season.">
+<meta name="description" content="The purpose of this package is to investigate how the shot selection in the National Basketball League (NBA) has changed over time. Specifically comparing shot type (2-pointers or 3-pointers) in the 2001-2002 and 2021-2022 NBA seasons.">
+<meta property="og:description" content="The purpose of this package is to investigate how the shot selection in the National Basketball League (NBA) has changed over time. Specifically comparing shot type (2-pointers or 3-pointers) in the 2001-2002 and 2021-2022 NBA seasons.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -51,26 +51,36 @@
 <!-- badges: start -->
 <!-- badges: end -->
 <div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+<h2 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
 </h2>
-<p><strong>nbashotpackage</strong> is an R package that is intended for analysis and exploration of shot data from the NBA. Specifically, relating to the locations of shots taken in games and how these have changed over the years. Comparing shot locations from the 2001-2002 season to those in the 2021-2022 season.</p>
-<p>The package includes</p>
-</div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>You can install the development version of nbashotpackage from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu">pak</span><span class="op">(</span><span class="st">"ETC5523-2025/assignment-4-packages-and-shiny-apps-a1dansc0tt"</span><span class="op">)</span></span></code></pre></div>
+<p><strong>nbashotpackage</strong> is an R package developed by Aidan Scott. The purpose of this package is to investigate how the shot selection in the National Basketball League (NBA) has changed over time.</p>
+<p>Specifically, this package examines the changes in shot selection (between 2-pointers and 3-pointers) that occur between the 2001-2002 and 2021-2022 NBA seasons. This investigation was sparked by the general sentiment around the league that NBA offences have shifted to shooting a much higher volume of 3-pointers compared to 2-pointers. These 3-point shots becoming a larger proportion of shots as the art of midrange 2-pointers goes extinct. This package aims to investigate and quantify this change.</p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>This is a basic example which shows you how to solve a common problem. Here we aim to plot the type of shots taken in the 2001-2002 season compared to those in the 2021-2022 season for the Boston Celtics. We also select the metric to be points which displays the total amount of points scored from 2-pointers and 3-pointers.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">nbashotpackage</span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/analyse_shots.html">analyse_shots</a></span><span class="op">(</span><span class="va">clean_data</span>, team_filter <span class="op">=</span> <span class="st">"BOS"</span>, metric <span class="op">=</span> <span class="st">"points"</span><span class="op">)</span><span class="op">$</span><span class="va">plot</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the nbashotpackage from <a href="https://github.com/ETC5523-2025/assignment-4-packages-and-shiny-apps-a1dansc0tt" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ETC5523-2025/assignment-4-packages-and-shiny-apps-a1dansc0tt"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="main-components">Main Components<a class="anchor" aria-label="anchor" href="#main-components"></a>
+</h2>
+<p>Here are some of the main components contained within the package that may be of interest to users:</p>
+<ul>
+<li>Data set <code>cleaned_data</code> that contains a cleaned data set of shot data for all games from the 2001-2002 NBA season and half of the 2021-2022 NBA season.</li>
+<li>Function <code><a href="reference/run_my_app.html">run_my_app()</a></code> that launches a shiny app which can be used for an interactive investigation of how shot selection in the NBA has changed between the 2001-2002 and 2021-2022 NBA seasons.</li>
+<li>Function <code><a href="reference/analyse_shots.html">analyse_shots()</a></code> that creates a plot and summary table (which can be called using the suffix <code>$plot</code> or <code>$summary</code>) that displays side-by-side bar charts for shot selection for the entire league. Teams can be filtered using the team_filter field as well as options for the metric (either number of shots or number of points) as seen in the example above.</li>
+</ul>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
