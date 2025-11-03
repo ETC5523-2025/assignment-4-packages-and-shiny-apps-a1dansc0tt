@@ -34,4 +34,4 @@ Here are some of the main components contained within the package that may be of
 
 - Data set `cleaned_data` that contains a cleaned data set of shot data for all games from the 2001-2002 NBA season and half of the 2021-2022 NBA season.
 - Function `run_my_app()` that launches a shiny app which can be used for an interactive investigation of how shot selection in the NBA has changed between the 2001-2002 and 2021-2022 NBA seasons. 
-- Function `analyse_shots()` that creates a plot and summary table (which can be called using the suffix `$plot` or `$summary`) that displays side-by-side bar charts for shot selection for the entire league. Teams can be filtered using the team_filter field as well as options for the metric (either number of shots or number of points).
+- Function `analyse_shots()` that creates a plot and summary table (which can be called using the suffix `$plot` or `$summary`) that displays side-by-side bar charts for shot selection for the entire league. Teams can be filtered using the team_filter field as well as options for the metric (either number of shots or number of points) as seen in the example above.
