@@ -18,3 +18,5 @@
 #'   \item{status}{gane status after the shot (leads, trails, tied)}
 #' }
 #' @source <https://www.basketball-reference.com/>
+"clean_data"
+usethis::use_data(clean_data, overwrite = TRUE)

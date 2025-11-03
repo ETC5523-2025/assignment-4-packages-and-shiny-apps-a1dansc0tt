@@ -16,4 +16,23 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(nbashotpackage)
+library(dplyr)
+library(ggplot2)
+library(patchwork)
 ```
+
+## Introduction
+
+The **nbashotspackage** provides tools to explore a data set that contains NBA shooting data from the 2001-2002 and 2021-2022 seasons (2 seasons).
+
+This vignette takes users through a basic demonstration that encapsulates the purpose of this package. It will explore:
+
+1. Load the data set included `clean_data`.
+2. Utilise the `analyse_shots()` function.
+3. Output interpretation from this analysis
+4. Launch the interactive Shiny app that is included in the package. 
+
+The goal of this is to allow users to compare shot selection between the two seasons, specifically when it comes to the frequency of 2-pointer and 3-pointer shots. 
+
+## The Data
+

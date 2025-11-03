@@ -4,9 +4,9 @@ usethis::use_package("patchwork")
 
 #' Bar chart and tibble of shot type in the 2001-2002 and 2021-2022 seasons filtered by NBA team
 #'
-#' Creates two bar charts and tibbles that show either the total number of points from 2 and 3-point attempts
+#' Creates two bar charts and a tibble that show either the total number of points from 2 and 3-point attempts
 #' or the total number of shots, filtered by team and split by season from NBA data
-#' @return `ggplot2` a summary tible and side by side bar charts
+#' @return `ggplot2` a summary tibble and side by side bar charts
 #' @examples
 #' analyse_shots(data = clean_data, team_filter = "BOS", metric = "points")$plot
 #' analyse_shots(data = clean_data, team_filter = "ATL", metric = "shots")$summary
@@ -65,7 +65,7 @@ analyse_shots <- function(data, team_filter = NULL, metric = c("shots", "points"
     theme_minimal() +
     theme(legend.position = "none")
 
-  #final plot
+  #final side-by-side plot
   combined_plot <- p1 + p2 + plot_layout(ncol = 2)
 
   return(list(summary = summary_data, plot = combined_plot))
