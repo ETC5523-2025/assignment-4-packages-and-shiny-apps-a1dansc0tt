@@ -6,17 +6,16 @@ library(patchwork)
 
 ui <- fluidPage(
 
-  # ---- Custom CSS Styling ----
+#Styling using CSS
   tags$head(
     tags$style(HTML("
       body {
-        background-color: #f6f7fb;
+        background-color: #17408B80;
         font-family: 'Helvetica Neue', Arial, sans-serif;
       }
 
       h1, h2, h3 {
         font-weight: 700;
-        color: #1a1a1a;
         letter-spacing: 0.5px;
       }
 
@@ -26,22 +25,21 @@ ui <- fluidPage(
       }
 
       h3 {
-        margin-top: 35px;
+        margin-top: 5px;
         font-size: 22px;
       }
 
       .sidebar {
-        background-color: lightblue;
+        background-color: #89CFF0;
         border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        padding: 10px;
+        margin-top: 15px;
       }
 
       .content-box {
-        background-color: lightblue;
+        background-color: #89CFF0;
         border-radius: 8px;
-        padding: 25px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        padding: 15px;
         margin-top: 15px;
       }
 
@@ -51,41 +49,46 @@ ui <- fluidPage(
     "))
   ),
 
-  # ---- Title ----
-  titlePanel("NBA Shot Analysis Explorer"),
+  #main title
+  titlePanel("NBA Shot Type Analyser Across Time"),
 
   fluidRow(
-    # ---------- Sidebar (Left Column) ----------
+    #sidebar
     column(
       width = 4,
       div(class = "sidebar",
 
-          h4("Select an NBA team and metric to explore two seasons (2001–2002 and 2021–2022)."),
+          h4("Select an NBA team and metric to compare between the 2001-2002 and 2021-2022 seasons."),
 
           selectInput(
             inputId = "team",
-            label = "Choose a team:",
+            label = "Choose your favourite NBA team (3 letter abbreviation)",
             choices = sort(unique(clean_data$team)),
             selected = "BOS"
           ),
 
           selectInput(
             inputId = "metric",
-            label = "Metric to display:",
+            label = "Select metric to display",
             choices = c("shots", "points"),
             selected = "points"
           ),
 
-          br(),
-          strong("Metric definitions:"),
+          strong("Metric definitions"),
           tags$ul(
-            tags$li("'shots': total number of 2-pt and 3-pt attempts"),
-            tags$li("'points': total points scored by 2-pt and 3-pt attempts")
+            tags$li("'shots' = the total number of 2pt and 3pt attempts"),
+            tags$li("'points' = the total points scored by 2pt and 3pt attempts")
+          ),
+
+          strong("Important Note"),
+          tags$ul(
+            tags$li("The purpose of this plot is to compare the proportion of 2pt and 3pt attempts across time. At the time of creation data for the entire 2021-2022 NBA season was not availble, which causes the axis scale on the two plots to vary. This does not effect the analysis as the proportion of each shot type is unlikely to change significantly over the course of a sinlge season."),
+            tags$li("Additionally, for some select teams one plot will not display. This is due to teams changing names and abbreviation identifiers across time."),
           )
       )
     ),
 
-    # ---------- Main Content (Right Column) ----------
+    #main content
     column(
       width = 8,
 
@@ -98,8 +101,8 @@ ui <- fluidPage(
           h3("Summary Table"),
           tableOutput("table"),
 
-          p("Interpretation: The bar charts compare seasons 2001–2002 and 2021–2022."),
-          p("Look for shifts in preference between 2-point and 3-point attempts.")
+          p("Interpretation: When metric 'points' is selected the plots display the given teams total number of points scored in the 2001-2002 and 2021-2022 seasons. When metric 'shots' is selected the plots display the given teams total number of each type of shot in the 2001-2002 and 2021-2022 seasons. The table below displays the numerical data used for the plots."),
+          p("The purpose of this app is to compare how shot selection has changed in the NBA over the span of 20 years.")
       )
     )
   )
@@ -107,7 +110,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
-  # ---- Render plot ----
+  #rendering plot
   output$plot <- renderPlot({
     analyse_shots(
       data = clean_data,
@@ -116,7 +119,7 @@ server <- function(input, output, session) {
     )$plot
   })
 
-  # ---- Render table ----
+  #rendering table
   output$table <- renderTable({
     analyse_shots(
       data = clean_data,

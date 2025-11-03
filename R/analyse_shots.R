@@ -12,7 +12,6 @@ usethis::use_package("patchwork")
 #' analyse_shots(data = clean_data, team_filter = "ATL", metric = "shots")$summary
 #'
 #' @export
-#Create the function for plotting either total shots or total points in each season, separated by shot tpye and filtered by team
 analyse_shots <- function(data, team_filter = NULL, metric = c("shots", "points")) { #function input
   metric <- match.arg(metric)
 
