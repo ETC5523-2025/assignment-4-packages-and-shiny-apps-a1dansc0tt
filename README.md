@@ -28,6 +28,11 @@ You can install the nbashotpackage from [GitHub](https://github.com/ETC5523-2025
 remotes::install_github("ETC5523-2025/assignment-4-packages-and-shiny-apps-a1dansc0tt")
 ```
 
+## Link to pkgwodn site
+
+Here you can view the pkgdown site with helpful information such as a vignette. 
+[pkgdownsite](https://etc5523-2025.github.io/assignment-4-packages-and-shiny-apps-a1dansc0tt/)
+
 ## Main Components
 
 Here are some of the main components contained within the package that may be of interest to users:
