@@ -3,7 +3,7 @@ Title: Locations of Shots in NBA Games from the 2001-2002 and 2021-2022 NBA seas
 Version: 0.0.0.9000
 Authors@R: 
     person("Aidan", "Scott", , "scottaidan0403@gmail.com", role = c("aut", "cre"))
-Description: This package aims to compare the locations of shots in the NBA over time. Specifically, comparing the locations of shots on the court in the 2001-2002 season to those in the 2021-2022 season. 
+Description: The purpose of this package is to investigate how the shot selection in the National Basketball League (NBA) has changed over time. Specifically comparing shot type (2-pointers or 3-pointers) in the 2001-2002 and 2021-2022 NBA seasons.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
